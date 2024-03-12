@@ -1,0 +1,37 @@
+nav {
+  height: 120px;
+  width: 100%;
+  color: #e6e5e5;
+  font-family: 'Source Sans 3', sans-serif;
+  background-color: cornflowerblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.logo {
+  font-size: 42px;
+  font-family: 'Bungee', sans-serif;
+}
+
+.bold-header {
+  font-weight: 600;
+}
+
+
+.write-tweet {
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  flex-direction: column; /* Align items vertically */
+  font-size: 24px;
+}
+
+.arrow-icon {
+  color: #f57272;
+}
