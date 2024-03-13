@@ -1,0 +1,28 @@
+.new-tweet {
+border-bottom: 10px;
+width: 100%;
+padding: 5%;
+}
+
+.tweet-elements {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+button {
+  color: #f4f1ec;
+  background-color: cornflowerblue;
+}
+
+output {
+  font-family: 'bungee', sans-serif;
+}
+
+textarea {
+  width: 100%;
+  height: 45px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 4px solid black;
+  background-color: transparent;
+}
