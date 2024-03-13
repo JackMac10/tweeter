@@ -9,6 +9,9 @@ padding: 5%;
   justify-content: space-between;
   align-items: center;
 }
+.counter.invalid {
+  color: red;
+}
 button {
   color: #f4f1ec;
   background-color: cornflowerblue;
