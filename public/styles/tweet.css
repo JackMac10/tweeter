@@ -52,10 +52,12 @@ footer {
   justify-content: space-between;
   padding-right: 20px;
 }
+
 i {
   padding-right: 10%;
   color: cornflowerblue;
 }
+
 i:hover {
   color: orangered;
 }
