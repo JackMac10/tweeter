@@ -1,0 +1,61 @@
+.tweet {
+  width: 100%;
+  outline-width: 3px;
+  outline-style: solid;
+  background-color: #f4f1ec;
+  padding: 5%;
+}
+
+.tweet:hover {
+  box-shadow: 6px 8px 0px 2px cornflowerblue;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.buds {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 200;
+}
+
+hr {
+  border: 2px solid black;
+}
+
+img.tweet-profile-pic {
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+}
+
+.username {
+color: turquoise;
+padding-right: 10px;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+
+.icons {
+  width: fit-content;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+i {
+  padding-right: 10%;
+  color: cornflowerblue;
+}
+i:hover {
+  color: orangered;
+}
