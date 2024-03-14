@@ -5,23 +5,35 @@
  */
 
 $(document).ready(function() {
+
+  const isTweetValid = function(tweetContent) {
+    if (!tweetContent) {
+      return { valid: false, message: 'Not Humming about anything? Add something to your Tweet to post.' };
+    }
+    
+    if (tweetContent.length > 140) {
+      return { valid: false, message: 'Woah Birdie! Your Tweet is longer than 140 characters! Please shorten to post' };
+    }
+  
+    return { valid: true };
+  };
   
   $('form').submit(function(event) {// event listener for form submission
     event.preventDefault();
-  
-    // Get tweet content from the form
-    const tweetContent = $('#tweet-text').val().trim();
-    
-    if (!tweetContent) { // if tweet content is empty
-      alert('Tweet content cannot be empty.');// alert the user
-      return;
-    }
-    
-    if (tweetContent.length > 140) { // if the tweet is too long
-      alert('Tweet content exceeds the maximum allowed length of 140 characters.'); // alert the user
-      return;
-    }
 
+      // Get tweet content from the form
+  const tweetContent = $('#tweet-text').val().trim();
+
+  // Validate tweet content
+  const validationResult = isTweetValid(tweetContent);
+if (!validationResult.valid) {
+  // Display error message to the user
+  $('#error-message').text(validationResult.message).show();
+  return; // Exit the function
+} else {
+  // Hide error message if validation passes
+  $('#error-message').hide();
+}
     // Serialize form data to a query string
     const formData = $(this).serialize();
     
@@ -75,9 +87,9 @@ const createTweetElement = function(tweet) {
       <header>
         <div class="buds">
         <img src="${tweet.user.avatars}" alt="Profile Picture">
-        <h3>${tweet.user.name}</h3>
+        <h3>${$('<div>').text(tweet.user.name).html()}</h3>
         </div>
-        <span class="username">${tweet.user.handle}</span>
+        <span class="username">${$('<div>').text(tweet.user.handle).html()}</span>
       </header>
       <p>${$('<div>').text(tweet.content.text).html()}</p> <!-- Escaping tweet content -->
       <hr>
