@@ -5,43 +5,34 @@
  */
 
 $(document).ready(function() {
-  // Add event listener for form submission
-  $('form').submit(function(event) {
-    // Prevent default form submission behavior
+  
+  $('form').submit(function(event) {// event listener for form submission
     event.preventDefault();
-    
+  
     // Get tweet content from the form
     const tweetContent = $('#tweet-text').val().trim();
     
-    // Validate tweet content
-    if (!tweetContent) {
-      // Notify the user that tweet content is not present
-      alert('Tweet content cannot be empty.');
-      return; // Exit the function
+    if (!tweetContent) { // if tweet content is empty
+      alert('Tweet content cannot be empty.');// alert the user
+      return;
     }
     
-    if (tweetContent.length > 140) {
-      // Notify the user that tweet content is too long
-      alert('Tweet content exceeds the maximum allowed length of 140 characters.');
-      return; // Exit the function
+    if (tweetContent.length > 140) { // if the tweet is too long
+      alert('Tweet content exceeds the maximum allowed length of 140 characters.'); // alert the user
+      return;
     }
 
     // Serialize form data to a query string
     const formData = $(this).serialize();
     
-    // Send a POST request with the serialized data to the server
-    $.post('/tweets/', formData)
+    $.post('/tweets/', formData)// Send a POST request with the serialized data to the server
       .then(function(response) {
-        // Handle the response from the server if needed
-        console.log('Tweet submitted successfully:', response);
-        // Reload tweets to reflect the new tweet
-        loadTweets();
+        console.log('Tweet submitted successfully:', response); // Handle the response from the server if needed
+        loadTweets(); // Reload tweets to reflect the new tweet
       })
       .catch(function(error) {
-        // Handle any errors that occur during the request
-        console.error('Error submitting tweet:', error);
-        // Display user-friendly error message
-        alert('Failed to submit tweet. Please try again later.');
+        console.error('Error submitting tweet:', error); // Handle any errors that occur during the request
+        alert('Failed to submit tweet. Please try again later.'); // alert the user 
       });
   });
 
