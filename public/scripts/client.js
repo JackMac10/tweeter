@@ -40,6 +40,7 @@ if (!validationResult.valid) {
     $.post('/tweets/', formData)// Send a POST request with the serialized data to the server
       .then(function(response) {
         console.log('Tweet submitted successfully:', response); // Handle the response from the server if needed
+        $('#tweet-text').val('');
         loadTweets(); // Reload tweets to reflect the new tweet
       })
       .catch(function(error) {
@@ -73,6 +74,10 @@ const loadTweets = function() {
 
 // Define renderTweets function
 const renderTweets = function(tweets) {
+  // Clear existing tweets from the container
+  $('#tweets-container').empty();
+
+  // Render the fetched tweets
   for (const tweet of tweets) {
     const $tweet = createTweetElement(tweet);
     $('#tweets-container').prepend($tweet);
@@ -91,7 +96,7 @@ const createTweetElement = function(tweet) {
         </div>
         <span class="username">${$('<div>').text(tweet.user.handle).html()}</span>
       </header>
-      <p>${$('<div>').text(tweet.content.text).html()}</p> <!-- Escaping tweet content -->
+      <p>${$('<div>').text(tweet.content.text).html()}</p>
       <hr>
       <footer>
         <span class="timeago">${timeAgoFormatted}</span>
@@ -105,6 +110,7 @@ const createTweetElement = function(tweet) {
     </article>
   `);
 
+ $tweet.hide().slideDown();
 
   return $tweet;
 };
