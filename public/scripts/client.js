@@ -17,11 +17,18 @@ $(document).ready(function() {
       .then(function(response) {
         // Handle the response from the server if needed
         console.log('Tweet submitted successfully:', response);
-        console.log(formData);
+        // Clear form fields after successful submission
+        $('#tweet-text').val('');
+        $('.counter').text('140');
+        
+        // Reload tweets to reflect the new tweet
+        loadTweets();
       })
       .catch(function(error) {
         // Handle any errors that occur during the request
         console.error('Error submitting tweet:', error);
+        // Display user-friendly error message
+        alert('Failed to submit tweet. Please try again later.');
       });
   });
 
@@ -40,6 +47,8 @@ $(document).ready(function() {
         .catch(function(error) {
             // Handle any errors that occur during the request
             console.error('Error fetching tweets:', error);
+            // Display user-friendly error message
+        alert('Failed to load tweets. Please try again later.');
         });
 };
 
@@ -65,7 +74,7 @@ const createTweetElement = function(tweet) {
         </div>
         <span class="username">${tweet.user.handle}</span>
       </header>
-      <p>${tweet.content.text}</p>
+      <p>${$('<div>').text(tweet.content.text).html()}</p> <!-- Escaping tweet content -->
       <hr>
       <footer>
       <span class="timeago">${timeago.format(tweet.created_at)}</span>
