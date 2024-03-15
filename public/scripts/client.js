@@ -6,24 +6,28 @@
 
 $(document).ready(function() {
 
+  // Function to check if a tweet is valid
   const isTweetValid = function(tweetContent) {
+    // if tweet content is empty, send error message
     if (!tweetContent) {
-      return { valid: false, message: 'Not Humming about anything, Eh? Add some Peeps to your Tweet to post!' };
+      return { valid: false, message: 'Hmm, Nothing to Humming about? Add some Peeps to your Tweet to post!' };
     }
     
+    // if tweet exceeds character limit, send error message
     if (tweetContent.length > 140) {
       return { valid: false, message: 'Woah Birdie! Your Tweet is longer than 140 characters! Please shorten to post.' };
     }
+    // Return validation result
     return { valid: true };
   };
-  
-  $('form').submit(function(event) {// event listener for form submission
+  // event listener for form submission
+  $('form').submit(function(event) { 
     event.preventDefault();
-    
+
       // Get tweet content from the form
     const tweetContent = $('#tweet-text').val().trim();
 
-   // Validate tweet content
+      // Validate tweet content
     const validationResult = isTweetValid(tweetContent);
       if (!validationResult.valid) {
         $('#error-message').text(validationResult.message).slideDown(); // Display error message to the user
@@ -35,7 +39,8 @@ $(document).ready(function() {
     // Serialize form data to a query string
     const formData = $(this).serialize();
     
-    $.post('/tweets/', formData)// Send a POST request with the serialized data to the server
+    // Send a POST request with the serialized data to the server
+    $.post('/tweets/', formData)
       .then(function(response) {
         console.log('Tweet submitted successfully:', response); // Handle the response from the server if needed
         $('#tweet-text').val('');
@@ -47,10 +52,12 @@ $(document).ready(function() {
       });
   });
 
+  // Event listener for new-tweet toggle
   $('.nav-message').click(function() {
     $('.new-tweet').slideToggle();
     $('#tweet-text').focus(); // Enable textarea automatically when form slides down
   });
+
   // Call loadTweets function to fetch tweets on page load
   loadTweets();
 });
@@ -60,16 +67,16 @@ const loadTweets = function() {
   // Make a GET request to fetch tweets
   $.get('/tweets')
     .then(function(tweets) {
-      // Log the fetched tweets to the console
+      // Log the tweets in the console
       console.log('Fetched tweets:', tweets);
-      // Render the fetched tweets
+      // Render the tweets
       renderTweets(tweets);
     })
     .catch(function(error) {
       // Handle any errors that occur during the request
       console.error('Error fetching tweets:', error);
       
-      // Display user-friendly error message
+      // Display error message via alert
       alert('Failed to fetch tweets. Please try again later.');
     });
 };
@@ -79,16 +86,18 @@ const renderTweets = function(tweets) {
   // Clear existing tweets from the container
   $('#tweets-container').empty();
 
-  // Render the fetched tweets
+  // Render the tweets
   for (const tweet of tweets) {
     const $tweet = createTweetElement(tweet);
     $('#tweets-container').prepend($tweet);
   }
 };
 
-// Define createTweetElement function
+// createTweetElement function = html for new tweets to follow
 const createTweetElement = function(tweet) {
+  // Formatted timeago
   const timeAgoFormatted = timeago.format(tweet.created_at);
+  //display tweet element
   const $tweet = $(`
     <article class="tweet">
       <header>
@@ -111,7 +120,7 @@ const createTweetElement = function(tweet) {
       </footer>
     </article>
   `);
-
+ // animation
  $tweet.slideDown();
 
   return $tweet;
