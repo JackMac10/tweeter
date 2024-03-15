@@ -14,26 +14,23 @@ $(document).ready(function() {
     if (tweetContent.length > 140) {
       return { valid: false, message: 'Woah Birdie! Your Tweet is longer than 140 characters! Please shorten to post.' };
     }
-  
     return { valid: true };
   };
   
   $('form').submit(function(event) {// event listener for form submission
     event.preventDefault();
-
+    
       // Get tweet content from the form
-  const tweetContent = $('#tweet-text').val().trim();
+    const tweetContent = $('#tweet-text').val().trim();
 
-  // Validate tweet content
-  const validationResult = isTweetValid(tweetContent);
-  if (!validationResult.valid) {
-    // Display error message to the user
-    $('#error-message').text(validationResult.message).slideDown();
-    return; // Exit the function
-  } else {
-    // Hide error message if validation passes
-    $('#error-message').slideUp();
-  }
+   // Validate tweet content
+    const validationResult = isTweetValid(tweetContent);
+      if (!validationResult.valid) {
+        $('#error-message').text(validationResult.message).slideDown(); // Display error message to the user
+        return; // Exit the function
+      } else {
+        $('#error-message').slideUp(); // Hide error message if validation passes
+      }
   
     // Serialize form data to a query string
     const formData = $(this).serialize();
@@ -96,7 +93,7 @@ const createTweetElement = function(tweet) {
     <article class="tweet">
       <header>
         <div class="buds">
-        <img src="${tweet.user.avatars}" alt="Profile Picture">
+        <img class="profile-pic"src="${tweet.user.avatars}" alt="Profile Picture">
         <h3>${$('<div>').text(tweet.user.name).html()}</h3>
         </div>
         <span class="username">${$('<div>').text(tweet.user.handle).html()}</span>

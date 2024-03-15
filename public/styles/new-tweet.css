@@ -1,7 +1,8 @@
 .new-tweet {
+  width: 100%;
 border-bottom: 10px;
-width: 100%;
 padding: 5%;
+padding-bottom: 90px;
 }
 
 .tweeting-elements {
@@ -15,18 +16,51 @@ padding: 5%;
 button {
   color: #f4f1ec;
   background-color: cornflowerblue;
+  border-radius: 30px;
+  font-size: 18px;
+  font-family: 'Bungee', sans-serif;
+  padding: 5px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
+
+@keyframes change-color {
+  
+  100%{
+    background-color: orangered;
+  }
+}
+
+button:hover {
+  animation-name: change-color;
+  animation-duration: 500ms; 
+  animation-fill-mode: forwards
+}
 output {
   font-family: 'bungee', sans-serif;
 }
 
 textarea {
+  border-top: 30px;
   width: 100%;
-  height: 45px;
   box-sizing: border-box;
   outline: none;
   border: none;
   border-bottom: 4px solid black;
   background-color: transparent;
+}
+.error-text {
+  color: #cc0033;
+  font-size: 13px;
+  line-height: 20px;
+  text-shadow: 1px 1px rgba(250,250,250,.3);
+}
+.error-msg {
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+  float: left;
+  padding: 20px 30px;
+  border-radius: 20px;
+  margin-bottom: 40px;
 }
