@@ -8,11 +8,11 @@ $(document).ready(function() {
 
   const isTweetValid = function(tweetContent) {
     if (!tweetContent) {
-      return { valid: false, message: 'Not Humming about anything? Add something to your Tweet to post.' };
+      return { valid: false, message: 'Not Humming about anything, Eh? Add some Peeps to your Tweet to post!' };
     }
     
     if (tweetContent.length > 140) {
-      return { valid: false, message: 'Woah Birdie! Your Tweet is longer than 140 characters! Please shorten to post' };
+      return { valid: false, message: 'Woah Birdie! Your Tweet is longer than 140 characters! Please shorten to post.' };
     }
   
     return { valid: true };
@@ -26,14 +26,15 @@ $(document).ready(function() {
 
   // Validate tweet content
   const validationResult = isTweetValid(tweetContent);
-if (!validationResult.valid) {
-  // Display error message to the user
-  $('#error-message').text(validationResult.message).show();
-  return; // Exit the function
-} else {
-  // Hide error message if validation passes
-  $('#error-message').hide();
-}
+  if (!validationResult.valid) {
+    // Display error message to the user
+    $('#error-message').text(validationResult.message).slideDown();
+    return; // Exit the function
+  } else {
+    // Hide error message if validation passes
+    $('#error-message').slideUp();
+  }
+  
     // Serialize form data to a query string
     const formData = $(this).serialize();
     
@@ -45,7 +46,7 @@ if (!validationResult.valid) {
       })
       .catch(function(error) {
         console.error('Error submitting tweet:', error); // Handle any errors that occur during the request
-        alert('Failed to submit tweet. Please try again later.'); // alert the user 
+        $('#error-message').text('Failed to submit tweet. Please try again later.').slideDown();
       });
   });
 
@@ -110,7 +111,7 @@ const createTweetElement = function(tweet) {
     </article>
   `);
 
- $tweet.hide().slideDown();
+ $tweet.slideDown();
 
   return $tweet;
 };
