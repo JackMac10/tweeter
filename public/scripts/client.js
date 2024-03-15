@@ -50,6 +50,10 @@ $(document).ready(function() {
       });
   });
 
+  $('.nav-message').click(function() {
+    $('.new-tweet').slideToggle();
+    $('#tweet-text').focus(); // Enable textarea automatically when form slides down
+  });
   // Call loadTweets function to fetch tweets on page load
   loadTweets();
 });
